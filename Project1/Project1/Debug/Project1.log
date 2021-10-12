@@ -1,0 +1,4 @@
+﻿  VectorIterator.cpp
+D:\Desktop\Emily\Degree\Year2\Sem2\Data Structure\Project1\Project1\VectorIterator.cpp(46,28): warning C4018: '<': signed/unsigned mismatch
+D:\Desktop\Emily\Degree\Year2\Sem2\Data Structure\Project1\Project1\VectorIterator.cpp(61,20): warning C4018: '<': signed/unsigned mismatch
+  Project1.vcxproj -> D:\Desktop\Emily\Degree\Year2\Sem2\Data Structure\Project1\Debug\Project1.exe
