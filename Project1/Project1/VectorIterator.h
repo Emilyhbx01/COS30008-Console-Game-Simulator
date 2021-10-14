@@ -10,7 +10,6 @@ class VectorIterator:public IteratorBase
 	public:
 		VectorIterator(int indexNo, int arrSize,vector<Item> vec);
 		int getIndex(string item);
-		bool end(int i);
 		Item operator[](int index);
 		void removeElement(int itemIndex);
 		void addElement(Item item);

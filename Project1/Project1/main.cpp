@@ -3,8 +3,7 @@ using namespace std;
 #include "Game.h"
 #include <SFML/Audio.hpp>
 using namespace sf;
-
-
+#include "Stack.h"
 
 
 int main() 

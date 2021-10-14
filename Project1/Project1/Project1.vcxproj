@@ -146,16 +146,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrayIterator.cpp" />
+    <ClCompile Include="Book.cpp" />
+    <ClCompile Include="DoubleNode.cpp" />
+    <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="IteratorBase.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SingleNode.cpp" />
+    <ClCompile Include="SinglyLinkedList.cpp" />
+    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="VectorIterator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayIterator.h" />
+    <ClInclude Include="Book.h" />
+    <ClInclude Include="DoubleNode.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="IteratorBase.h" />
+    <ClInclude Include="NoteStruct.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="SingleNode.h" />
+    <ClInclude Include="SinglyLinkedList.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="VectorIterator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

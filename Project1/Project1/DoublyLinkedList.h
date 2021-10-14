@@ -1,24 +1,29 @@
 #pragma once
-#include "Item.h"
+#include "DoubleNode.h"
 
-struct DoubleNode{
-	Item item;
-	DoubleNode* next;
-	DoubleNode* prev;
-};
 
 class DoublyLinkedList 
 {
-	public:
+
+	private:
 		DoubleNode* head;
 		DoubleNode* tail;
+		DoubleNode* current;
 
-		void append(DoubleNode* item) 
-		{
-			item->next = tail->next;
-			tail->next = item;
-			tail = item;
-		}
+	public:
+		~DoublyLinkedList();
+
+		DoublyLinkedList();
+
+		DoublyLinkedList(DoubleNode* headNode, DoubleNode* tailNode);
+
+		void append(DoubleNode* itemNode);
+
+	
+		void showContent();
 		
+		void next();
+
+		void previous();
 	
 };

@@ -4,27 +4,36 @@ using namespace std;
 #include "VectorIterator.h"
 #include <string>
 #include "ArrayIterator.h"
+#include "SinglyLinkedList.h"
+#include "Stack.h"
+#include "NoteStruct.h"
 
 class Player
 {
 private:
 
 	VectorIterator* bagpack;
+	SinglyLinkedList* droppedItemList;
 	int energy;
 	string location;
+	Note* note;
 
 public:
 	
 	~Player() 
 	{
 		delete bagpack;
+		delete droppedItemList;
+		delete note;
 	}
 
 	Player()
 	{
-		bagpack = new VectorIterator(0, 3, vector<Item>{});
+		bagpack = new VectorIterator(0, 5, vector<Item>{});
+		droppedItemList = new SinglyLinkedList(3);
 		energy = 100;
 		location = "class";
+		note = new Note();
 	};
 
 
@@ -39,17 +48,19 @@ public:
 		location = playerLocation;
 	}
 
-	void addToBagpack(Item item, ArrayIterator*& itemItr) 
+	bool addToBagpack(Item item, ArrayIterator*& itemItr) 
 	{
 		if (bagpack->full()) 
 		{
 			dropItem(itemItr);
+			return false;
 		}
 		else 
 		{
 			bagpack->addElement(item);
 			cout << "Added " << item.getName() << " to your bag" << endl;
 			itemItr->removeElement(itemItr->getIndex(item.getName()));
+			return true;
 
 		}
 		
@@ -68,16 +79,21 @@ public:
 	void grabItem(ArrayIterator*& itemItr) 
 	{
 		string items;
-		cout << "What item do you want to collect?" << endl;
+		cout << endl << "What item do you want to collect?" << endl;
 		getline(cin, items);
 		vector<Item> vecItems = splitItems(items, itemItr);
 
-		for (int i = 0; i < vecItems.size(); i++) 
+		for (unsigned int i = 0; i < vecItems.size(); i++) 
 		{
 			Item item = vecItems[i];
 			if (item.getLocation() == location) 
 			{
-				addToBagpack(item,itemItr);
+				//if not added means bagpack is full so break out of loop
+				bool added = addToBagpack(item,itemItr);
+				if (!added) 
+				{
+					break;
+				}
 			}
 			else 
 			{
@@ -103,9 +119,19 @@ public:
 				item.setLocation(location);
 				itemItr->addElement(item);
 				bagpack->removeElement(bagpack->getIndex(item.getName()));
+
+				SingleNode* node = new SingleNode(item);
+				droppedItemList->append(node);
+
 			}
 		}
 	}
+
+	void seeDroppedItems() 
+	{
+		droppedItemList->showContent();
+	}
+
 
 	vector<Item> splitItems(string items, ArrayIterator*& itemItr) 
 	{
@@ -165,15 +191,15 @@ public:
 		bool valid = false;
 		while (!valid)
 		{
-			cout << "Where do you want to go?" << endl;
+			cout << endl << "Where do you want to go?" << endl;
 			getline(cin, destination);
 			if (destination == location)
 			{
 				cout << "You are already here" << endl;
 				valid = true;
 			}
-			else if (find(begin(locations), end(locations), location) != end(locations)) {
-				cout << "Walking to " << location << ".... Arrived" << endl;
+			else if (find(begin(locations), end(locations), destination) != end(locations)) {
+				cout << "Walking to " << destination << ".... Arrived" << endl;
 				location = destination;
 				valid = true;
 			}
@@ -185,6 +211,151 @@ public:
 
 	}
 
+	void seeBook(Stack* books) 
+	{
+		cout << "Walking over to the books..." << endl;
+		string action;
+
+		while (!(books->isEmpty()))
+		{
+			cout << endl << "1) Read the book" << endl;
+			cout << "2) See the next book" << endl;
+			cout << "3) Finish" << endl;
+			cout << "Choose an option:" << endl;
+			getline(cin, action);
+			if (action == "1")
+			{	
+				readBook(books);
+			}
+			else if (action == "2")
+			{
+				books->pop();
+			}
+			else if (action == "3")
+			{
+				break;
+			}
+			else
+			{
+				cout << "Invalid option" << endl;
+			}
+		}
+
+		if (books->isEmpty()) 
+		{
+			cout << "No more books..." << endl;
+		}
+	}
+
+	void readBook(Stack* books) 
+	{
+		string choice;
+		bool run = true;
+		Book* book = books->peek();
+		DoublyLinkedList* pages = book->getContent();
+		pages->showContent();
+
+		while (run) 
+		{
+			cout << endl << "1) Flip book to next page" << endl;
+			cout << "2) Go to previous page" << endl;
+			cout << "3) Finish" << endl;
+			cout << "Choose an option:" << endl;
+			getline(cin, choice);
+
+
+			if (choice == "1")
+			{
+				pages->next();
+				pages->showContent();
+			}
+			else if (choice == "2") 
+			{
+				pages->previous();
+				pages->showContent();
+			}
+			else if (choice == "3") 
+			{
+				run = false;
+			}
+		}
+		
+
+	}
+
+
+
+	void takeNote() 
+	{
+		int penItemIndex = bagpack->getIndex("pen");
+		int bookItemIndex = bagpack->getIndex("book");
+		if (penItemIndex >= 0 && bookItemIndex >= 0) 
+		{
+			string noteContent;
+			cout << endl << "Enter your note:" << endl;
+			getline(cin, noteContent);
+			cout << (*bagpack)[penItemIndex].getMessage() << endl;
+			cout << (*bagpack)[bookItemIndex].getMessage() << endl;
+			note->append(noteContent);
+		}
+		else 
+		{
+			cout << "A pen and book is required to take notes..." << endl;
+		}
+
+	}
+
+	void viewNote() 
+	{
+		if (note->noteContent.length() > 0) 
+		{
+			note->view();
+		}
+		else 
+		{
+			cout << "No notes available at the moment..." << endl;
+		}
+	}
+
+	void callHelp(bool& callHelp) 
+	{
+		string number;
+		cout << "Enter number to dial:" << endl;
+		getline(cin, number);
+		cout << "Dialing..." << endl;
+
+		if (number == "110") 
+		{
+			cout << "Call answered... Help is on the way..." << endl;
+			callHelp = true;
+		}
+		else 
+		{
+			cout << "The number you called is unavailable..." << endl;
+		}
+	}
+
+
+	void signalForHelp() 
+	{
+		string items;
+		cout << endl << "What item do you want to use?" << endl;
+		cout << "There are " << bagpack << " in your bagpack." << endl;
+		getline(cin, items);
+		vector<Item> itemsVec = splitItems(items);
+		for (Item item : itemsVec) 
+		{
+			int index = bagpack->getIndex(item.getName());
+			cout << (*bagpack)[index].getMessage() << endl;
+			if (item.getName() == "warning light") 
+			{
+				cout << "The helicopter is coming!!" << endl;
+			}
+		}
+
+
+
+	}
 	void consumeFood();
 
 };

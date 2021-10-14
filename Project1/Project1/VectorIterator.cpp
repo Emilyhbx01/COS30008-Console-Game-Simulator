@@ -10,7 +10,7 @@ VectorIterator::VectorIterator(int indexNo, int arrSize, vector<Item> vec) :Iter
 
 int VectorIterator::getIndex(string item) 
 {
-	for (int i = 0; i < size; i++) 
+	for (int i = 0; i < vectorElements.size(); i++) 
 	{
 		if (vectorElements[i].getName() == item) 
 		{

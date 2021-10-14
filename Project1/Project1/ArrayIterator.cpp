@@ -3,7 +3,7 @@
 
 ArrayIterator::~ArrayIterator() 
 {
-
+	
 	delete[] itemArray;
 }
 
