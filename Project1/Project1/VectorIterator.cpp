@@ -56,19 +56,31 @@ Item VectorIterator::operator[](int index)
 	return vectorElements.at(index);
 }
 
+
+//friend operator overloading
 ostream& operator<<(ostream& outputStream, VectorIterator*& itr) 
 {
-	for (int i = 0; i < itr->vectorElements.size(); i++) 
+	if (itr->vectorElements.size() <= 0) 
 	{
-		if (i != itr->vectorElements.size() - 1) 
-		{
-			outputStream << itr->vectorElements[i].getName() << ",";
-		}
-		else 
-		{
-			outputStream << itr->vectorElements[i].getName();
-		}
-		
+		outputStream << "nothing";
 	}
+	else 
+	{
+		for (int i = 0; i < itr->vectorElements.size(); i++)
+		{
+			if (i != itr->vectorElements.size() - 1)
+			{
+				outputStream << itr->vectorElements[i].getName() << ",";
+			}
+			else
+			{
+				outputStream << itr->vectorElements[i].getName();
+			}
+
+		}
+	}
+	
+
+
 	return outputStream;
 }

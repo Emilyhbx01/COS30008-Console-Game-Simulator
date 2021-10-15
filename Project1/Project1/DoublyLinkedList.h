@@ -12,18 +12,11 @@ class DoublyLinkedList
 
 	public:
 		~DoublyLinkedList();
-
 		DoublyLinkedList();
-
 		DoublyLinkedList(DoubleNode* headNode, DoubleNode* tailNode);
-
 		void append(DoubleNode* itemNode);
-
-	
 		void showContent();
-		
 		void next();
-
 		void previous();
 	
 };

@@ -15,8 +15,6 @@ class ArrayIterator : public IteratorBase
 		void addElement(Item item);
 		Item operator[](int index);
 		void displayItems(string playerLocation);
-		
-
-
+	
 
 };

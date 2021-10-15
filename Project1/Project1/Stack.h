@@ -12,17 +12,11 @@ class Stack
 
 	public:
 		~Stack();
-
 		Stack(int sizeStack);
-
 		bool isFull();
-
 		void push(Book* book);
-
 		void pop();
-
 		Book* peek();
-
 		bool isEmpty();
 };
 

@@ -31,6 +31,7 @@ void SinglyLinkedList::append(SingleNode* itemNode)
 	}
 	else
 	{
+		//remove the head element and assign new head if the list is full 
 		if (getListSize() == maxSize && head != &SingleNode::NIL)
 		{
 			SingleNode* tempNode = head->next;
@@ -55,14 +56,17 @@ void SinglyLinkedList::remove(Item item)
 	{
 		if (node->item.getName() == item.getName())
 		{
+			//if the node to be removed is the head, then a new head will have to be assigned
 			if (node == head)
 			{
 				head = node->next;
 			}
+			//if the node to be removed is the tail, then a new tail will have to be assigned
 			else if (node == tail)
 			{
 				tail = prev;
 			}
+			//if the node to be removed is the one and only node in the list, the head and tail will be NIL after removal of the node
 			else if (node == tail && node == head)
 			{
 				head = &SingleNode::NIL;
@@ -78,13 +82,14 @@ void SinglyLinkedList::remove(Item item)
 	}
 }
 
+
 void SinglyLinkedList::showContent()
 {
 	SingleNode* node = head;
 	int count = 0;
 	while (node != &SingleNode::NIL)
 	{
-		cout << "Item:" << node->item.getName() << "\t" << "Location:" << node->item.getLocation() << endl;
+		cout << "Item:" << node->item.getName() << "\t\t" << "Location:" << node->item.getLocation() << endl;
 		node = node->next;
 		count++;
 	}
@@ -95,6 +100,7 @@ void SinglyLinkedList::showContent()
 	}
 }
 
+//return the total number of elements in the list
 int SinglyLinkedList::getListSize()
 {
 	SingleNode* node = head;

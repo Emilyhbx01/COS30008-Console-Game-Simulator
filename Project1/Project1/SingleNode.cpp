@@ -9,11 +9,6 @@ SingleNode::SingleNode()
 
 }
 
-SingleNode::SingleNode(Item itemValue, SingleNode* nextNode)
-{
-	item = itemValue;
-	next = nextNode;
-}
 
 SingleNode::SingleNode(Item itemValue)
 {

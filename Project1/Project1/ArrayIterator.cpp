@@ -26,7 +26,7 @@ int ArrayIterator::getIndex(string item)
 	return -1;
 }
 
-
+//remove element by copying the elements into a new array except for the element to be removed
 void ArrayIterator::removeElement(int itemIndex)
 {
 	for (int i = 0; i < size; i++)
@@ -43,6 +43,8 @@ void ArrayIterator::removeElement(int itemIndex)
 	}
 }
 
+//add new elements into the array by creating a new dynamic array of a bigger size
+//copy the old elements to the new array and add the new element at the last of the array
 void ArrayIterator::addElement(Item item)
 {
 	int newSize = size + 1;

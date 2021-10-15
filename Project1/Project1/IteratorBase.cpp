@@ -18,6 +18,7 @@ Item IteratorBase::operator[](int index)
 	return Item();
 }
 
+//empty implementation for polymorphism
 void IteratorBase::removeElement(int itemIndex) 
 {
 

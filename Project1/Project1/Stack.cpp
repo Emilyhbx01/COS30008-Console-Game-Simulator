@@ -21,6 +21,7 @@ bool Stack::isFull()
 	return topIndex == size - 1;
 }
 
+//add new element to the top of the stack
 void Stack::push(Book* book)
 {
 	if (!isFull())
@@ -30,6 +31,7 @@ void Stack::push(Book* book)
 	}
 }
 
+//remove the element at the top of the stack
 void Stack::pop()
 {
 	if (topIndex >= 0)
@@ -39,6 +41,7 @@ void Stack::pop()
 
 }
 
+//return the current element at the top of the stack
 Book* Stack::peek()
 {
 	Book* book = &bookArr[topIndex];

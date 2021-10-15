@@ -21,6 +21,7 @@ DoublyLinkedList::DoublyLinkedList(DoubleNode* headNode, DoubleNode* tailNode)
 {
 	head = headNode;
 	tail = tailNode;
+	//current refers to current node which will always be the first/head node when the doubly linked list is newly created
 	current = headNode;
 }
 
@@ -44,6 +45,7 @@ void DoublyLinkedList::showContent()
 
 void DoublyLinkedList::next()
 {
+	//make the current point to the next node if the next node is not NIL
 	if ((current->next) != &DoubleNode::NIL)
 	{
 		current = current->next;
@@ -53,6 +55,7 @@ void DoublyLinkedList::next()
 
 void DoublyLinkedList::previous()
 {
+	//make the current point to the previous node if the next node is not NIL
 	if ((current->prev) != &DoubleNode::NIL)
 	{
 		current = current->prev;

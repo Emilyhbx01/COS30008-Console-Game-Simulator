@@ -149,8 +149,10 @@
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="DoubleNode.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="IteratorBase.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SingleNode.cpp" />
     <ClCompile Include="SinglyLinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />

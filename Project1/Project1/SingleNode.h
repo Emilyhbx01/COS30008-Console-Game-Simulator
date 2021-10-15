@@ -10,7 +10,6 @@ class SingleNode {
 		SingleNode* next;
 		static SingleNode NIL;
 		SingleNode();
-		SingleNode(Item itemValue, SingleNode* nextNode);
 		SingleNode(Item itemValue);
 
 
