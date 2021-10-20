@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-using namespace std;
 #include "Player.h"
 #include "Item.h"
 #include "IteratorBase.h"

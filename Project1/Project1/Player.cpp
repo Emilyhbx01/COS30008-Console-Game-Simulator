@@ -40,6 +40,7 @@ void Player::setEnergy(int energyLvl)
 
 bool Player::addToBagpack(Item item, ArrayIterator*& itemItr)
 {
+	//if bagpack is full(5 items), will have to ask player to drop item
 	if (bagpack->full())
 	{
 		dropItem(itemItr);
@@ -47,6 +48,7 @@ bool Player::addToBagpack(Item item, ArrayIterator*& itemItr)
 	}
 	else
 	{
+		//if player grab an item, the item should be removed from the item array and added to the player's bag pack
 		bagpack->addElement(item);
 		cout << "Added " << item.getName() << " to your bag" << endl;
 		itemItr->removeElement(itemItr->getIndex(item.getName()));
@@ -72,6 +74,8 @@ void Player::grabItem(ArrayIterator*& itemItr)
 	string items;
 	cout << endl << "What item do you want to collect?" << endl;
 	getline(cin, items);
+
+	//split the words of player input
 	vector<Item> vecItems = splitItems(items, itemItr);
 
 	for (unsigned int i = 0; i < vecItems.size(); i++)
@@ -193,6 +197,7 @@ void Player::walk(vector<string> locations)
 			cout << "You are already here" << endl;
 			valid = true;
 		}
+		//check if the location input by player exists
 		else if (find(begin(locations), end(locations), destination) != end(locations)) {
 			cout << "Walking to " << destination << ".... Arrived" << endl;
 			location = destination;
@@ -206,11 +211,15 @@ void Player::walk(vector<string> locations)
 
 }
 
+
 void Player::seeBook(Stack* books)
 {
 	cout << "Walking over to the books..." << endl;
 	string action;
+	
 
+	//after player read a book, the book will be removed from the stack
+	//check if the stack of book is empty 
 	while (!(books->isEmpty()))
 	{
 		cout << endl << "1) Read the book" << endl;
@@ -224,6 +233,7 @@ void Player::seeBook(Stack* books)
 		}
 		else if (action == "2")
 		{
+			//if player chooses to skip and see the next book, the previous book will be removed from the stack
 			books->pop();
 		}
 		else if (action == "3")
@@ -284,11 +294,15 @@ void Player::takeNote()
 {
 	int penItemIndex = bagpack->getIndex("pen");
 	int bookItemIndex = bagpack->getIndex("book");
+
+	//check if the player has pen and book in the bagpack
 	if (penItemIndex >= 0 && bookItemIndex >= 0)
 	{
 		string noteContent;
 		cout << endl << "Enter your note:" << endl;
 		getline(cin, noteContent);
+
+		//display message of writing note...
 		cout << (*bagpack)[penItemIndex].getMessage() << endl;
 		cout << (*bagpack)[bookItemIndex].getMessage() << endl;
 		note->append(noteContent);
@@ -319,6 +333,7 @@ void Player::callHelp(bool& callHelp)
 	getline(cin, number);
 	cout << "Dialing..." << endl;
 
+	//help can only be reached if the number is 110
 	if (number == "110")
 	{
 		cout << "Call answered... Help is on the way..." << endl;
@@ -338,6 +353,8 @@ void Player::signalForHelp(bool& win)
 	cout << "There are " << bagpack << " in your bagpack." << endl;
 	getline(cin, items);
 	vector<Item> itemsVec = splitItems(items);
+
+	//player can only use warning light to signal sucessfully
 	for (Item item : itemsVec)
 	{
 		if (item.getName() == "warning light" || item.getName() == "torchlight" || item.getName() == "fire extinguisher")
