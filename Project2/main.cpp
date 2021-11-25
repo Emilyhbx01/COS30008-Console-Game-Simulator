@@ -1,30 +1,36 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 using namespace std;
-#include "Item.h"
-#include "Livestock.h"
-#include "Queue.h"
-#include "Stack.h"
+#include "Game.h"
+
 
 int main() 
 {
-	/*
-	Item item("Chicken", 10.5, 20, 10, "Rearing chicken....", 180);
-	Livestock livestock(item);
-	SingleNode<Livestock>* node1 = new SingleNode<Livestock>(livestock);
+	Game* game = new Game();
+	string option = game->mainMenu();
+	if (option == "1") 
+	{
+		game->start();
+	}
+	else 
+	{
+		delete game;
+		return 1;
+	}
+	delete game;
 
-	Queue* plantations = new Queue();
-	plantations->enqueue(*node1);
-	plantations->displayQueue();
-	delete plantations;
-	*/
 
-	/*
-	vector<Note> notesVector = { Note("Best seed to plant","Corn, wheat"),Note("Best animal to rear","Chickens") };
-	Stack* notes = new Stack(notesVector);
-	notes->pop();
-	cout << notes->peek().getTitle();
-	*/
+	//system("clear");
+	//cout << "Test:" << x << endl;
+
+	//if (stoi(x) > 10) {
+	//	Sleep(10000);
+	//}
+	
+
+
+
+	
+	
 
 	return 0;
 }

@@ -12,7 +12,7 @@ Item::Item()
 
 }
 
-Item::Item (string itemName, double cost, double sellPrice, int itemQuantity, string itemMessage, int time)
+Item::Item (string itemName, int cost, int sellPrice, int itemQuantity, string itemMessage, int time, string itemType)
 {
 	name = itemName;
 	costPrice = cost;
@@ -20,6 +20,7 @@ Item::Item (string itemName, double cost, double sellPrice, int itemQuantity, st
 	quantity = itemQuantity;
 	message = itemMessage;
 	growthTime = time;
+	type = itemType;
 }
 
 string Item::getName()
@@ -27,12 +28,12 @@ string Item::getName()
 	return name;
 }
 
-double Item::getCostPrice()
+int Item::getCostPrice()
 {
 	return costPrice;
 }
 
-double Item::getSellingPrice()
+int Item::getSellingPrice()
 {
 	return sellingPrice;
 }
@@ -50,4 +51,34 @@ string Item::getMessage()
 int Item::getGrowthTime() 
 {
 	return growthTime;
+}
+
+string Item::getType() 
+{
+	return type;
+}
+
+
+void Item::displayDetails(string type) 
+{
+	//cout << "Name:" << name << endl;
+	//cout << "Cost Price:" << costPrice << endl;
+	//cout << "Selling Price:" << sellingPrice << endl;
+	//if (type == "harvest") 
+	//{
+	//	cout << "Quantity:" << quantity << endl;
+	//}
+	//cout << "Growth Time:" << growthTime << endl << endl;
+	cout << "Name:" << name << ", Cost Price:" << costPrice << ", Selling Price:" << sellingPrice;
+	if (type == "harvest")
+	{
+		cout << ", Quantity:" << quantity;
+	}
+	cout << ", Growth Time:" << growthTime << endl;
+	
+}
+
+void Item::setQuantity(int itemQuantity) 
+{
+	quantity = itemQuantity;
 }

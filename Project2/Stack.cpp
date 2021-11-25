@@ -16,8 +16,12 @@ Stack::Stack(vector<Note> stackData)
 
 void Stack::pop()
 {
-	data.erase(data.begin() + topIndex);
-	topIndex--;
+	if (topIndex >= 0) 
+	{
+		data.erase(data.begin() + topIndex);
+		topIndex--;
+	}
+	
 }
 
 void Stack::push(Note note)
@@ -26,7 +30,14 @@ void Stack::push(Note note)
 	data.push_back(note);
 }
 
-Note Stack::peek()
+bool Stack::peek()
 {
-	return data[topIndex];
+	if (topIndex >= 0) 
+	{
+		Note note = data[topIndex];
+		cout << note.getTitle() << endl;
+		cout << note.getMessage() << endl;
+		return true;
+	}
+	return false;
 }

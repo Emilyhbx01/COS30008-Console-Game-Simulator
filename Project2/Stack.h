@@ -14,5 +14,5 @@ public:
 	Stack(vector<Note> stackData);
 	void pop();
 	void push(Note note);
-	Note peek();
+	bool peek();
 };

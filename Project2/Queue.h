@@ -1,6 +1,7 @@
 #pragma once
 #include "SinglyLinkedList.h"
 #include "Livestock.h"
+#include "GroupADT.h"
 
 class Queue 
 {
@@ -11,4 +12,5 @@ class Queue
 		void enqueue(SingleNode<Livestock>& node);
 		void dequeue();
 		void displayQueue();
+		void readyForHarvest(GroupADT& notifications);
 };

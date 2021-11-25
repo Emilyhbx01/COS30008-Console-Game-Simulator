@@ -140,22 +140,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Farm.cpp" />
+    <ClCompile Include="GroupADT.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Livestock.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Note.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="Visitor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BTree.h" />
     <ClInclude Include="Farm.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GroupADT.h" />
     <ClInclude Include="Note.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Livestock.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SingleNode.h" />
     <ClInclude Include="SinglyLinkedList.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="Visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

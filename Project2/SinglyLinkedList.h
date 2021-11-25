@@ -45,11 +45,35 @@ template <class T> class SinglyLinkedList
 			return head;
 		}
 
+		bool isEmpty() 
+		{
+			if (head == &SingleNode<T>::NIL && tail == &SingleNode<T>::NIL) 
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 		void removeHead() 
 		{
-			SingleNode<T>* temp = head->next;
-			delete head;
-			head = temp;
+			if (head != &SingleNode<T>::NIL) 
+			{
+				if (head == tail) 
+				{
+					head = &SingleNode<T>::NIL;
+					tail = &SingleNode<T>::NIL;
+				}
+				else 
+				{
+					SingleNode<T>* temp = head->next;
+					delete head;
+					head = temp;
+				}
+				
+			}
+			
 		}
 
 };
